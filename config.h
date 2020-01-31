@@ -110,8 +110,8 @@ static Key keys[] = {
     { 0,                          XF86XK_AudioRaiseVolume, spawn,          {.v = upvol} },
     { 0,                          XF86XK_AudioMute,        spawn,          {.v = mutevol} },
     { MODKEY,                     XK_b,                    togglebar,      {0} },
-    { MODKEY|ShiftMask,           XK_o,                    rotatestack,    {.i = +1 } },
-    { MODKEY,                     XK_o,                    focusstack,     {.i = +1 } },
+    { MODKEY,                     XK_o,                    rotatestack,    {.i = +1 } },
+    { MODKEY|ShiftMask,           XK_o,                    focusstack,     {.i = +1 } },
     { MODKEY,                     XK_j,                    incnmaster,     {.i = +1 } },
     { MODKEY,                     XK_k,                    incnmaster,     {.i = -1 } },
     { MODKEY,                     XK_Left,                 setmfact,       {.f = -0.05} },
@@ -136,6 +136,7 @@ static Key keys[] = {
     { MODKEY,                     XK_Tab,                  view,           {0} },
     { MODKEY|ShiftMask,           XK_q,                    killclient,     {0} },
     { MODKEY,                     XK_t,                    setlayout,      {.v = &layouts[0]} },
+    { MODKEY,                     XK_s,                    setlayout,      {.v = &layouts[1]} },
     { MODKEY,                     XK_m,                    setlayout,      {.v = &layouts[2]} },
     { MODKEY,                     XK_f,                    fullscreen,     {0} },
     { MODKEY,                     XK_space,                setlayout,      {0} },
@@ -161,7 +162,6 @@ static Key keys[] = {
     //{ MODKEY,                     XK_h,                    focusstack,     {.i = -1 } },
     //{ MODKEY,                     XK_l,                    focusstack,     {.i = +1 } },
     //{ MODKEY|ShiftMask,           XK_Return,               zoom,           {0} },
-    { MODKEY,                     XK_e,                    setlayout,      {.v = &layouts[1]} },
 };
 
 /* button definitions */

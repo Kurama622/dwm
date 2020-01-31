@@ -1461,9 +1461,11 @@ rotatestack(const Arg *arg)
 {
     Client *c = NULL, *f;
 
-    if (!selmon->sel)
-        return;
-    f = selmon->sel;
+    // mov windows with cursor moving
+    /*if (!selmon->sel)*/
+        /*return;*/
+    /*f = selmon->sel;*/
+
     if (arg->i > 0) {
         for (c = nexttiled(selmon->clients); c && nexttiled(c->next); c = nexttiled(c->next));
         if (c){
