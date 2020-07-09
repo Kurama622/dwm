@@ -3,10 +3,10 @@
 /* appearance */
 static const unsigned int borderpx    = 1;        /* border pixel of windows */
 static const unsigned int snap        = 32;       /* snap pixel */
-static const unsigned int gappih      = 2;       /* horiz inner gap between windows */
-static const unsigned int gappiv      = 2;       /* vert inner gap between windows */
-static const unsigned int gappoh      = 2;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov      = 2;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappih      = 2;        /* horiz inner gap between windows */
+static const unsigned int gappiv      = 2;        /* vert inner gap between windows */
+static const unsigned int gappoh      = 2;        /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov      = 2;        /* vert outer gap between windows and screen edge */
 static const int smartgaps            = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
@@ -19,6 +19,7 @@ static const char col_gray3[]         = "#bbbbbb";
 static const char col_gray4[]         = "#ffffff";
 static const char col_cyan[]          = "#090909";
 static const char col_border[]        = "#42A5F5";
+
 static const unsigned int baralpha    = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 
@@ -43,10 +44,11 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class         instance    title       tags mask     isfloating   monitor */
-    { "Gimp",        NULL,       NULL,       0,            1,           -1 },
     { "Firefox",     NULL,       NULL,       1 << 1,       0,           -1 },
     { "Chromium",    NULL,       NULL,       1 << 1,       0,           -1 },
-    { "matplotlib",  NULL,       NULL,       0,            1,           -1 },
+    { "matplotlib",  NULL,       NULL,       NULL,         1,           -1 },
+    { "Zathura",     NULL,       NULL,       NULL,         1,           -1 },
+    { "feh",         NULL,       NULL,       NULL,         1,           -1 },
 };
 
 /* layout(s) */
@@ -77,16 +79,22 @@ static char dmenumon[2]            = "0"; /* component of dmenucmd, manipulated 
 static const char *termcmd[]       = { "st", NULL };
 static const char *gnomecmd[]      = { "gnome-terminal", NULL };
 static const char *firefoxcmd[]    = { "firefox", NULL };
+static const char *surfcmd[]       = { "surf", NULL };
 static const char *chromiumcmd[]   = { "chromium", NULL };
 static const char *nautiluscmd[]   = { "nautilus", NULL };
 static const char *shuttercmd[]    = { "/home/vegeta/scripts/shutter_start.sh", NULL };
 static const char *trayercmd[]     = { "/home/vegeta/scripts/tr-start.sh", NULL };
 static const char *wallpapercmd[]  = { "/home/vegeta/Pictures/wallpapers/wallpaper.sh", NULL };
 static const char *vpncmd[]        = { "/home/vegeta/scripts/vpn.sh", NULL };
+//static const char *spydercmd[]     = { "/home/vegeta/scripts/spyder_start.sh", NULL };
 static const char *upvol[]         = { "/home/vegeta/scripts/vol-up.sh", NULL };
 static const char *downvol[]       = { "/home/vegeta/scripts/vol-down.sh", NULL };
 static const char *mutevol[]       = { "/home/vegeta/scripts/vol-toggle.sh", NULL };
+static const char *cleanSurfHist[] = { "/home/vegeta/.surf/clean_history.sh", NULL };
+//static const char *startdwm[]      = { "/home/vegeta/scripts/startdwm.sh", NULL};
 static const char *dmenucmd[]      = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x12", NULL };
 
 static Key keys[] = {
     /* modifier                   key                    function        argument */
@@ -94,12 +102,17 @@ static Key keys[] = {
     { MODKEY,                     XK_Return,               spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,           XK_Return,               spawn,          {.v = gnomecmd } },
     { MODKEY|ShiftMask,           XK_t,                    spawn,          {.v = trayercmd } },
+    //{ MODKEY|ShiftMask,           XK_r,                    spawn,          {.v = startdwm } },
     { MODKEY|ShiftMask,           XK_p,                    spawn,          {.v = wallpapercmd } },
+    { MODKEY,                     XK_grave,                togglescratch,  {.v = scratchpadcmd } },
     { MODKEY|ShiftMask,           XK_f,                    spawn,          {.v = firefoxcmd } },
+    //{ MODKEY|ShiftMask,           XK_s,                    spawn,          {.v = spydercmd } },
+    { MODKEY|ShiftMask,           XK_s,                    spawn,          {.v = surfcmd } },
     { MODKEY|ShiftMask,           XK_w,                    spawn,          {.v = chromiumcmd } },
     { MODKEY|ShiftMask,           XK_a,                    spawn,          {.v = shuttercmd } },
     { MODKEY|ShiftMask,           XK_v,                    spawn,          {.v = vpncmd } },
     { MODKEY|ShiftMask,           XK_u,                    spawn,          {.v = nautiluscmd } },
+    { MODKEY|ShiftMask,           XK_c,                    spawn,          {.v = cleanSurfHist } },
     { 0,                          XF86XK_AudioLowerVolume, spawn,          {.v = downvol} },
     { 0,                          XF86XK_AudioRaiseVolume, spawn,          {.v = upvol} },
     { 0,                          XF86XK_AudioMute,        spawn,          {.v = mutevol} },
