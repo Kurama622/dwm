@@ -11,8 +11,8 @@ static const int smartgaps            = 0;        /* 1 means no outer gap when t
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
 static const Bool viewontag           = True;     /* Switch view on tag switch */
-static const char *fonts[]            = { "Fira Code:size=12" };
-static const char dmenufont[]         = "Fira Code:size=12";
+static const char *fonts[]            = { "FiraMono Nerd Font:size=12" };
+static const char dmenufont[]         = "FiraMono Nerd Font:size=12";
 static const char col_gray1[]         = "#222222";
 static const char col_gray2[]         = "#444444";
 static const char col_gray3[]         = "#bbbbbb";
@@ -36,7 +36,7 @@ static const unsigned int alphas[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -44,23 +44,22 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class         instance    title       tags mask     isfloating   monitor */
-    { "Firefox",     NULL,       NULL,       1 << 1,       0,           -1 },
-    { "Chromium",    NULL,       NULL,       1 << 1,       0,           -1 },
+    { "firefox",     NULL,       NULL,       1 << 1,       0,           -1 },
     { "matplotlib",  NULL,       NULL,       NULL,         1,           -1 },
-    { "Zathura",     NULL,       NULL,       NULL,         1,           -1 },
+    { "zathura",     NULL,       NULL,       NULL,         0,           -1 },
     { "feh",         NULL,       NULL,       NULL,         1,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    { "[]=",      tile },    /* first entry is default */
-    { "><>",      NULL },    /* no layout function means floating behavior */
-    { "[M]",      monocle },
+    { "T",      tile },    /* first entry is default */
+    { "S",      NULL },    /* no layout function means floating behavior */
+    { "M",      monocle },
 };
 
 /* key definitions */
@@ -76,23 +75,14 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2]            = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *termcmd[]       = { "st", NULL };
-static const char *gnomecmd[]      = { "gnome-terminal", NULL };
+static const char *termcmd[]       = { "alacritty", NULL };
 static const char *firefoxcmd[]    = { "firefox", NULL };
-static const char *surfcmd[]       = { "surf", NULL };
-static const char *chromiumcmd[]   = { "chromium-browser", NULL };
 static const char *nautiluscmd[]   = { "nautilus", NULL };
-static const char *shuttercmd[]    = { "/home/vegeta/scripts/shutter_start.sh", NULL };
 static const char *trayercmd[]     = { "/home/vegeta/scripts/tr-start.sh", NULL };
-static const char *wallpapercmd[]  = { "/home/vegeta/Pictures/wallpapers/wallpaper.sh", NULL };
-static const char *vpncmd[]        = { "/home/vegeta/scripts/vpn.sh", NULL };
-//static const char *spydercmd[]     = { "/home/vegeta/scripts/spyder_start.sh", NULL };
 static const char *upvol[]         = { "/home/vegeta/scripts/vol-up.sh", NULL };
 static const char *downvol[]       = { "/home/vegeta/scripts/vol-down.sh", NULL };
 static const char *mutevol[]       = { "/home/vegeta/scripts/vol-toggle.sh", NULL };
-static const char *cleanSurfHist[] = { "/home/vegeta/.surf/clean_history.sh", NULL };
-//static const char *startdwm[]      = { "/home/vegeta/scripts/startdwm.sh", NULL};
-static const char *dmenucmd[]      = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "rofi", "-show", "drun", "-show-icons", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x12", NULL };
 
@@ -100,19 +90,10 @@ static Key keys[] = {
     /* modifier                   key                    function        argument */
     { MODKEY,                     XK_d,                    spawn,          {.v = dmenucmd } },
     { MODKEY,                     XK_Return,               spawn,          {.v = termcmd } },
-    { MODKEY|ShiftMask,           XK_Return,               spawn,          {.v = gnomecmd } },
     { MODKEY|ShiftMask,           XK_t,                    spawn,          {.v = trayercmd } },
-    //{ MODKEY|ShiftMask,           XK_r,                    spawn,          {.v = startdwm } },
-    { MODKEY|ShiftMask,           XK_p,                    spawn,          {.v = wallpapercmd } },
     { MODKEY,                     XK_grave,                togglescratch,  {.v = scratchpadcmd } },
     { MODKEY|ShiftMask,           XK_f,                    spawn,          {.v = firefoxcmd } },
-    //{ MODKEY|ShiftMask,           XK_s,                    spawn,          {.v = spydercmd } },
-    { MODKEY|ShiftMask,           XK_s,                    spawn,          {.v = surfcmd } },
-    { MODKEY|ShiftMask,           XK_w,                    spawn,          {.v = chromiumcmd } },
-    { MODKEY|ShiftMask,           XK_a,                    spawn,          {.v = shuttercmd } },
-    { MODKEY|ShiftMask,           XK_v,                    spawn,          {.v = vpncmd } },
     { MODKEY|ShiftMask,           XK_u,                    spawn,          {.v = nautiluscmd } },
-    { MODKEY|ShiftMask,           XK_c,                    spawn,          {.v = cleanSurfHist } },
     { 0,                          XF86XK_AudioLowerVolume, spawn,          {.v = downvol} },
     { 0,                          XF86XK_AudioRaiseVolume, spawn,          {.v = upvol} },
     { 0,                          XF86XK_AudioMute,        spawn,          {.v = mutevol} },
