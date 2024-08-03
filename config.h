@@ -19,14 +19,21 @@ static const char col_gray3[]         = "#bbbbbb";
 static const char col_gray4[]         = "#ffffff";
 static const char col_cyan[]          = "#090909";
 static const char col_border[]        = "#42A5F5";
+static const char col_black[]       = "#000000";
+static const char col_red[]         = "#ff0000";
+static const char col_yellow[]      = "#ffff00";
+static const char col_green[]      = "#00ff00";
+static const char col_white[]       = "#ffffff";
 
 static const unsigned int baralpha    = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 
-static const char *colors[][3]        = {
+static const char *colors[][4]        = {
     /*               fg         bg         border   */
-    [SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-    [SchemeSel]  = { col_gray4, col_cyan,  col_border},
+    [SchemeNorm]  = { col_gray3, col_gray1, col_gray2},
+    [SchemeSel]   = { col_gray4, col_cyan,  col_border},
+  	[SchemeWarn]  = { col_green, col_gray1, col_red},
+  	[SchemeUrgent]= { col_border,  col_gray1, col_cyan},
 };
 
 static const unsigned int alphas[][3] = {
@@ -76,13 +83,14 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2]            = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *termcmd[]       = { "alacritty", NULL };
-static const char *firefoxcmd[]    = { "firefox", NULL };
+static const char *chromecmd[]    = { "google-chrome-stable", NULL };
+static const char *chrome_proxy_cmd[]    = { "google-chrome-stable", "--proxy-server=127.0.0.1:7890", NULL };
 static const char *nautiluscmd[]   = { "nautilus", NULL };
 static const char *trayercmd[]     = { "/home/arch/scripts/tr-start.sh", NULL };
 static const char *upvol[]         = { "/home/arch/scripts/vol-up.sh", NULL };
 static const char *downvol[]       = { "/home/arch/scripts/vol-down.sh", NULL };
 static const char *mutevol[]       = { "/home/arch/scripts/vol-toggle.sh", NULL };
-static const char *dmenucmd[] = { "rofi", "-show", "drun", "-show-icons", NULL };
+static const char *dmenucmd[] = { "rofi", "-show", "drun", "-show-icons", "-dpi", "1", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x12", NULL };
 
@@ -92,7 +100,8 @@ static Key keys[] = {
     { MODKEY,                     XK_Return,               spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,           XK_t,                    spawn,          {.v = trayercmd } },
     { MODKEY,                     XK_grave,                togglescratch,  {.v = scratchpadcmd } },
-    { MODKEY|ShiftMask,           XK_f,                    spawn,          {.v = firefoxcmd } },
+    { MODKEY|ShiftMask,           XK_f,                    spawn,          {.v = chromecmd } },
+    { MODKEY|ShiftMask,           XK_c,                    spawn,          {.v = chrome_proxy_cmd } },
     { MODKEY|ShiftMask,           XK_u,                    spawn,          {.v = nautiluscmd } },
     { 0,                          XF86XK_AudioLowerVolume, spawn,          {.v = downvol} },
     { 0,                          XF86XK_AudioRaiseVolume, spawn,          {.v = upvol} },
