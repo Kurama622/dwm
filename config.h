@@ -1,13 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx    = 1;        /* border pixel of windows */
+static const unsigned int borderpx    = 3;        /* border pixel of windows */
 static const unsigned int snap        = 32;       /* snap pixel */
-static const unsigned int gappih      = 2;        /* horiz inner gap between windows */
-static const unsigned int gappiv      = 2;        /* vert inner gap between windows */
-static const unsigned int gappoh      = 2;        /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov      = 2;        /* vert outer gap between windows and screen edge */
-static const int smartgaps            = 0;        /* 1 means no outer gap when there is only one window */
+static const unsigned int gappih      = 8;        /* horiz inner gap between windows */
+static const unsigned int gappiv      = 8;        /* vert inner gap between windows */
+static const unsigned int gappoh      = 8;        /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov      = 8;        /* vert outer gap between windows and screen edge */
+static const int smartgaps            = 8;        /* 1 means no outer gap when there is only one window */
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
 static const Bool viewontag           = True;     /* Switch view on tag switch */
@@ -20,7 +20,7 @@ static const char col_gray4[]         = "#ffffff";
 static const char col_cyan[]          = "#090909";
 static const char col_border[]        = "#42A5F5";
 static const char col_black[]       = "#000000";
-static const char col_red[]         = "#ff0000";
+static const char col_red[]         = "#ffc0cb";
 static const char col_yellow[]      = "#ffff00";
 static const char col_green[]      = "#00ff00";
 static const char col_white[]       = "#ffffff";
@@ -28,12 +28,13 @@ static const char col_white[]       = "#ffffff";
 static const unsigned int baralpha    = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 
-static const char *colors[][4]        = {
+static const char *colors[][5]        = {
     /*               fg         bg         border   */
     [SchemeNorm]  = { col_gray3, col_gray1, col_gray2},
     [SchemeSel]   = { col_gray4, col_cyan,  col_border},
   	[SchemeWarn]  = { col_green, col_gray1, col_red},
   	[SchemeUrgent]= { col_border,  col_gray1, col_cyan},
+  	[SchemeRed]   = { col_red, col_gray1, col_cyan},
 };
 
 static const unsigned int alphas[][3] = {
