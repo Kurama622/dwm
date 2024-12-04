@@ -772,6 +772,10 @@ drawbar(Monitor *m)
     char ctmp;
     Client *c;
 
+    if (!m->showbar) {
+        return;
+    }
+
     if (m == selmon) { /* status is only drawn on user-defined status monitor */
       drw_setscheme(drw, scheme[SchemeNorm]);
       while(1) {
