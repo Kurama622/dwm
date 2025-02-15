@@ -87,7 +87,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2]                  = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *termcmd[]             = { "alacritty", NULL };
+static const char *termcmd[]             = { "kitty", NULL };
 static const char *chromecmd[]           = { "google-chrome-stable", NULL };
 static const char *chrome_proxy_cmd[]    = { "google-chrome-stable", "--proxy-server=127.0.0.1:7890", NULL };
 static const char *nautiluscmd[]         = { "nautilus", NULL };
@@ -97,8 +97,7 @@ static const char *downvol[]             = { "/home/arch/scripts/vol-down.sh", N
 static const char *mutevol[]             = { "/home/arch/scripts/vol-toggle.sh", NULL };
 static const char *dmenucmd[]            = { "rofi", "-show", "drun", "-show-icons", "-dpi", "1", NULL };
 static const char scratchpadname[]       = "scratchpad";
-// static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x12", NULL };
-static const char *scratchpadcmd[]       = { "alacritty", "-o", "window.dimensions.columns=80", "-o", "window.dimensions.lines=24", "-T", scratchpadname, NULL };
+static const char *scratchpadcmd[]       = { "kitty", "-o", "initial_window_width=100c", "-o", "initial_window_height=30c", "-o", "remember_window_size=n", "-T", scratchpadname, NULL };
 
 
 static Key keys[] = {
