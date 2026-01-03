@@ -1,3 +1,4 @@
+#include <stdbool.h>
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -10,7 +11,7 @@ static const unsigned int gappov      = 8;        /* vert outer gap between wind
 static const int smartgaps            = 1;        /* 1 means no outer gap when there is only one window */
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
-static const Bool viewontag           = True;     /* Switch view on tag switch */
+static const bool viewontag           = true;     /* Switch view on tag switch */
 static const char *fonts[]            = { "FiraMono Nerd Font:size=12" };
 static const char dmenufont[]         = "FiraMono Nerd Font:size=12";
 static const char col_gray1[]         = "#222222";
@@ -19,11 +20,11 @@ static const char col_gray3[]         = "#bbbbbb";
 static const char col_gray4[]         = "#ffffff";
 static const char col_cyan[]          = "#090909";
 static const char col_border[]        = "#42A5F5";
-static const char col_black[]       = "#000000";
-static const char col_red[]         = "#ffc0cb";
-static const char col_yellow[]      = "#ffff00";
-static const char col_green[]      = "#00ff00";
-static const char col_white[]       = "#ffffff";
+static const char col_black[]         = "#000000";
+static const char col_red[]           = "#ffc0cb";
+static const char col_yellow[]        = "#ffff00";
+static const char col_green[]         = "#00ff00";
+static const char col_white[]         = "#ffffff";
 
 static const unsigned int baralpha    = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
@@ -51,12 +52,13 @@ static const Rule rules[] = {
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-    /* class         instance    title       tags mask     isfloating   monitor */
-    { "firefox",     NULL,       NULL,       1 << 1,       0,           -1 },
-    { "Google-chrome",     NULL,       NULL,       1 << 1,       0,           -1 },
-    { "matplotlib",  NULL,       NULL,       0,            1,           -1 },
-    { "zathura",     NULL,       NULL,       0,            0,           -1 },
-    { "feh",         NULL,       NULL,       0,            1,           -1 },
+    /* class              instance    title       tags mask     isfloating   monitor */
+    { "firefox",          NULL,       NULL,       1 << 1,       0,           -1 },
+    { "QQ",               NULL,       NULL,       1 << 3,       1,           -1 },
+    { "Google-chrome",    NULL,       NULL,       1 << 1,       0,           -1 },
+    { "matplotlib",       NULL,       NULL,       0,            1,           -1 },
+    { "zathura",          NULL,       NULL,       0,            0,           -1 },
+    { "feh",              NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
