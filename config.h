@@ -98,6 +98,7 @@ static const char *upvol[]               = { "/home/arch/scripts/vol-up.sh", NUL
 static const char *downvol[]             = { "/home/arch/scripts/vol-down.sh", NULL };
 static const char *mutevol[]             = { "/home/arch/scripts/vol-toggle.sh", NULL };
 static const char *dmenucmd[]            = { "rofi", "-show", "drun", "-show-icons", "-dpi", "1", NULL };
+static const char *window_switch_cmd[]   = { "rofi", "-show", "window", "-show-icons", "-dpi", "1", NULL };
 static const char scratchpadname[]       = "scratchpad";
 static const char *scratchpadcmd[]       = { "kitty", "-o", "initial_window_width=100c", "-o", "initial_window_height=30c", "-o", "remember_window_size=n", "-T", scratchpadname, NULL };
 
@@ -139,6 +140,7 @@ static Key keys[] = {
     { Mod1Mask|ShiftMask,             XK_o,                    incrovgaps,     {.i = -1 } },
     { MODKEY,                         XK_z,                    zoom,           {0} },
     { MODKEY,                         XK_Tab,                  view,           {0} },
+    { MODKEY,                         XK_Escape,               spawn,          {.v = window_switch_cmd} },
     { MODKEY|ShiftMask,               XK_q,                    killclient,     {0} },
     { MODKEY,                         XK_t,                    setlayout,      {.v = &layouts[0]} },
     { MODKEY,                         XK_s,                    setlayout,      {.v = &layouts[1]} },
